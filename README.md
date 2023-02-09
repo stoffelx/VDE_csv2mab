@@ -1,4 +1,4 @@
-## Metadata transformation unsing OpenRefine for VDE norms/standards
+## Metadata transformation using OpenRefine for VDE norms/standards
 
 Metadata processing is based on the 'save result list' option offered by www.normenbibliothek.de (on the upper left). The csv data obtained from the platform may then be restructured by using one of the provided JSON-scripts in OpenRefine. Use standard (CSV) parsing settings on the import to OpenRefine and create a project with the downloaded data. Finally, paste code to the 'Apply'-prompt, which can be found at 'Undo/Redo' section (on the uper left), perform the transformation and export the results to any considered file format.
 
