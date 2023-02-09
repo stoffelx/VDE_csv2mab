@@ -1,0 +1,243 @@
+[
+  {
+    "op": "core/column-reorder",
+    "columnNames": [
+      "Vertriebsnummer",
+      "DIN-Nummer",
+      "VDE-Nummer",
+      "Vortitel",
+      "Ausgabedatum",
+      "Erscheinungsdatum",
+      "Zurückziehungsdatum",
+      "Übergangsfrist",
+      "Preis",
+      "Dokumentart",
+      "Titel"
+    ],
+    "description": "Reorder columns"
+  },
+  {
+    "op": "core/column-addition",
+    "engineConfig": {
+      "facets": [],
+      "mode": "row-based"
+    },
+    "baseColumnName": "Titel",
+    "expression": "grel:if(value.contains(/;/), value.replace(/^.*?;/, \"\"), null)",
+    "onError": "set-to-blank",
+    "newColumnName": "370a",
+    "columnInsertIndex": 11,
+    "description": "Create column 370a at index 11 based on column Titel using expression grel:if(value.contains(/;/), value.replace(/^.*?;/, \"\"), null)"
+  },
+  {
+    "op": "core/text-transform",
+    "engineConfig": {
+      "facets": [],
+      "mode": "row-based"
+    },
+    "columnName": "370a",
+    "expression": "value.trim()",
+    "onError": "keep-original",
+    "repeat": false,
+    "repeatCount": 10,
+    "description": "Text transform on cells in column 370a using expression value.trim()"
+  },
+  {
+    "op": "core/column-addition",
+    "engineConfig": {
+      "facets": [],
+      "mode": "row-based"
+    },
+    "baseColumnName": "Titel",
+    "expression": "grel:value.replace(/;.*/, \"\")",
+    "onError": "set-to-blank",
+    "newColumnName": "335",
+    "columnInsertIndex": 11,
+    "description": "Create column 335 at index 11 based on column Titel using expression grel:value.replace(/;.*/, \"\")"
+  },
+  {
+    "op": "core/column-addition",
+    "engineConfig": {
+      "facets": [],
+      "mode": "row-based"
+    },
+    "baseColumnName": "370a",
+    "expression": "grel:if(value.contains(\"Deutsch\"), \"ger\", (if(value.contains(\"Englis\"), \"eng\", \"ger\")))",
+    "onError": "set-to-blank",
+    "newColumnName": "037b",
+    "columnInsertIndex": 13,
+    "description": "Create column 037b at index 13 based on column 370a using expression grel:if(value.contains(\"Deutsch\"), \"ger\", (if(value.contains(\"Englis\"), \"eng\", \"ger\")))"
+  },
+  {
+    "op": "core/text-transform",
+    "engineConfig": {
+      "facets": [],
+      "mode": "row-based"
+    },
+    "columnName": "370a",
+    "expression": "grel:value.replace(/;.*?Berich.*$/, \"\")",
+    "onError": "keep-original",
+    "repeat": false,
+    "repeatCount": 10,
+    "description": "Text transform on cells in column 370a using expression grel:value.replace(/;.*?Berich.*$/, \"\")"
+  },
+  {
+    "op": "core/text-transform",
+    "engineConfig": {
+      "facets": [],
+      "mode": "row-based"
+    },
+    "columnName": "Dokumentart",
+    "expression": "grel:if(value==\"Norm\", null, \"[\"+value+\"]\")",
+    "onError": "keep-original",
+    "repeat": false,
+    "repeatCount": 10,
+    "description": "Text transform on cells in column Dokumentart using expression grel:if(value==\"Norm\", null, \"[\"+value+\"]\")"
+  },
+  {
+    "op": "core/column-addition",
+    "engineConfig": {
+      "facets": [],
+      "mode": "row-based"
+    },
+    "baseColumnName": "Vertriebsnummer",
+    "expression": "grel:\"https://www.normenbibliothek.de/vde-xaveropp/normenbibliothek/start.xav?start=%2F%2F*%5B%40attr_id%3D%27\"+value+\"%27%5D\"",
+    "onError": "set-to-blank",
+    "newColumnName": "655e",
+    "columnInsertIndex": 1,
+    "description": "Create column 655e at index 1 based on column Vertriebsnummer using expression grel:\"https://www.normenbibliothek.de/vde-xaveropp/normenbibliothek/start.xav?start=%2F%2F*%5B%40attr_id%3D%27\"+value+\"%27%5D\""
+  },
+  {
+    "op": "core/column-addition",
+    "engineConfig": {
+      "facets": [],
+      "mode": "row-based"
+    },
+    "baseColumnName": "DIN-Nummer",
+    "expression": "grel:value.toString()+\" / \"+cells['VDE-Nummer'].value.toString()+\" \"+cells['Vortitel'].value.toString()+\" \"+cells['Dokumentart'].value.toString()",
+    "onError": "set-to-blank",
+    "newColumnName": "331",
+    "columnInsertIndex": 3,
+    "description": "Create column 331 at index 3 based on column DIN-Nummer using expression grel:value.toString()+\" / \"+cells['VDE-Nummer'].value.toString()+\" \"+cells['Vortitel'].value.toString()+\" \"+cells['Dokumentart'].value.toString()+\":\""
+  },
+  {
+    "op": "core/column-addition",
+    "engineConfig": {
+      "facets": [],
+      "mode": "row-based"
+    },
+    "baseColumnName": "Erscheinungsdatum",
+    "expression": "grel:value.substring(6)",
+    "onError": "set-to-blank",
+    "newColumnName": "425a",
+    "columnInsertIndex": 8,
+    "description": "Create column 425a at index 8 based on column Erscheinungsdatum using expression grel:value.substring(6)"
+  },
+  {
+    "op": "core/column-addition",
+    "engineConfig": {
+      "facets": [],
+      "mode": "row-based"
+    },
+    "baseColumnName": "Preis",
+    "expression": "grel:if(value==\",00\", null, value)",
+    "onError": "set-to-blank",
+    "newColumnName": "540z",
+    "columnInsertIndex": 12,
+    "description": "Create column 540z at index 12 based on column Preis using expression grel:if(value==\",00\", null, value)"
+  },
+  {
+    "op": "core/column-addition",
+    "engineConfig": {
+      "facets": [],
+      "mode": "row-based"
+    },
+    "baseColumnName": "Vertriebsnummer",
+    "expression": "grel:value",
+    "onError": "set-to-blank",
+    "newColumnName": "020a",
+    "columnInsertIndex": 1,
+    "description": "Create column 020a at index 1 based on column Vertriebsnummer using expression grel:value"
+  },
+  {
+    "op": "core/column-addition",
+    "engineConfig": {
+      "facets": [],
+      "mode": "row-based"
+    },
+    "baseColumnName": "Übergangsfrist",
+    "expression": "grel:if(value!=null, \"Ausgabedatum: \"+cells['Ausgabedatum'].value.toString()+\". - Zurückziehungsdatum: \"+cells['Zurückziehungsdatum'].value.toString()+\". - Übergangsfrist bis: \"+cells['Übergangsfrist'].value.toString(), \"Ausgabedatum: \"+cells['Ausgabedatum'].value.toString())",
+    "onError": "set-to-blank",
+    "newColumnName": "501",
+    "columnInsertIndex": 12,
+    "description": "Create column 501 at index 12 based on column Übergangsfrist using expression grel:if(value!=null, \"Ausgabedatum: \"+cells['Ausgabedatum'].value.toString()+\". - Zurückziehungsdatum: \"+cells['Zurückziehungsdatum'].value.toString()+\". - Übergangsfrist bis: \"+cells['Übergangsfrist'].value.toString(), \"Ausgabedatum: \"+cells['Ausgabedatum'].value.toString())"
+  },
+  {
+    "op": "core/column-addition",
+    "engineConfig": {
+      "facets": [],
+      "mode": "row-based"
+    },
+    "baseColumnName": "020a",
+    "expression": "grel:rowIndex+1",
+    "onError": "set-to-blank",
+    "newColumnName": "seq_nr",
+    "columnInsertIndex": 2,
+    "description": "Create column seq_nr at index 2 based on column 020a using expression grel:rowIndex+1"
+  },
+  {
+    "op": "core/column-reorder",
+    "columnNames": [
+      "seq_nr",
+      "020a",
+      "037b",
+      "331",
+      "335",
+      "370a",
+      "425a",
+      "501",
+      "540z",
+      "655e"
+    ],
+    "description": "Reorder columns"
+  },
+    {
+    "op": "core/column-addition",
+    "engineConfig": {
+      "facets": [],
+      "mode": "row-based"
+    },
+    "baseColumnName": "seq_nr",
+    "expression": "grel:\"Berlin\"",
+    "onError": "set-to-blank",
+    "newColumnName": "410",
+    "columnInsertIndex": 6,
+    "description": "Create column 410 at index 6 based on column seq_nr using expression grel:\"Berlin\""
+  },
+  {
+    "op": "core/column-addition",
+    "engineConfig": {
+      "facets": [],
+      "mode": "row-based"
+    },
+    "baseColumnName": "seq_nr",
+    "expression": "grel:\"VDE Verlag\"",
+    "onError": "set-to-blank",
+    "newColumnName": "412",
+    "columnInsertIndex": 7,
+    "description": "Create column 412 at index 7 based on column seq_nr using expression grel:\"VDE Verlag\""
+  },
+  {
+    "op": "core/column-addition",
+    "engineConfig": {
+      "facets": [],
+      "mode": "row-based"
+    },
+    "baseColumnName": "seq_nr",
+    "expression": "grel:\"621\"",
+    "onError": "set-to-blank",
+    "newColumnName": "700b",
+    "columnInsertIndex": 12,
+    "description": "Create column 700b at index 12 based on column seq_nr using expression grel:\"621\""
+  }
+]
