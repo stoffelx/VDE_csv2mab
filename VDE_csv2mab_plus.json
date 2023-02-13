@@ -17,6 +17,18 @@
     "description": "Reorder columns"
   },
   {
+    "op": "core/column-rename",
+    "oldColumnName": "DIN-Nummer",
+    "newColumnName": "564",
+    "description": "Rename column DIN-Nummer to 564"
+  },
+  {
+    "op": "core/column-rename",
+    "oldColumnName": "VDE-Nummer",
+    "newColumnName": "564_",
+    "description": "Rename column VDE-Nummer to 564_"
+  },
+  {
     "op": "core/column-addition",
     "engineConfig": {
       "facets": [],
@@ -88,11 +100,11 @@
       "mode": "row-based"
     },
     "columnName": "Dokumentart",
-    "expression": "grel:if(value==\"Norm\", null, \"[\"+value+\"]\")",
+    "expression": "grel:if(value==\"Norm\", null, value)",
     "onError": "keep-original",
     "repeat": false,
     "repeatCount": 10,
-    "description": "Text transform on cells in column Dokumentart using expression grel:if(value==\"Norm\", null, \"[\"+value+\"]\")"
+    "description": "Text transform on cells in column Dokumentart using expression grel:if(value==\"Norm\", null, value)"
   },
   {
     "op": "core/column-addition",
@@ -113,12 +125,25 @@
       "facets": [],
       "mode": "row-based"
     },
-    "baseColumnName": "DIN-Nummer",
-    "expression": "grel:value.toString()+\" / \"+cells['VDE-Nummer'].value.toString()+\" \"+cells['Vortitel'].value.toString()+\" \"+cells['Dokumentart'].value.toString()",
+    "baseColumnName": "564",
+    "expression": "grel:if(value==cells['564_'].value, value.toString()+\" \"+cells['Vortitel'].value.toString()+\" \"+cells['Dokumentart'].value.toString(), value.toString()+\" / \"+cells['564_'].value.toString()+\" \"+cells['Vortitel'].value.toString()+\" \"+cells['Dokumentart'].value.toString())",
     "onError": "set-to-blank",
     "newColumnName": "331",
     "columnInsertIndex": 3,
-    "description": "Create column 331 at index 3 based on column DIN-Nummer using expression grel:value.toString()+\" / \"+cells['VDE-Nummer'].value.toString()+\" \"+cells['Vortitel'].value.toString()+\" \"+cells['Dokumentart'].value.toString()+\":\""
+    "description": "Create column 331 at index 3 based on column 564 using expression grel:if(value==cells['564_'].value, value.toString()+\" \"+cells['Vortitel'].value.toString()+\" \"+cells['Dokumentart'].value.toString(), value.toString()+\" / \"+cells['564_'].value.toString()+\" \"+cells['Vortitel'].value.toString()+\" \"+cells['Dokumentart'].value.toString())"
+  },
+  {
+    "op": "core/text-transform",
+    "engineConfig": {
+      "facets": [],
+      "mode": "row-based"
+    },
+    "columnName": "564_",
+    "expression": "grel:if(value==cells['564'].value, null, value)",
+    "onError": "keep-original",
+    "repeat": false,
+    "repeatCount": 10,
+    "description": "Text transform on cells in column 564_ using expression grel:if(value==cells['564'].value, null, value)"
   },
   {
     "op": "core/column-addition",
@@ -140,11 +165,11 @@
       "mode": "row-based"
     },
     "baseColumnName": "Preis",
-    "expression": "grel:if(value==\",00\", null, value)",
+    "expression": "grel:if(value==\",00\", null, \"EUR \"+value)",
     "onError": "set-to-blank",
     "newColumnName": "540z",
     "columnInsertIndex": 12,
-    "description": "Create column 540z at index 12 based on column Preis using expression grel:if(value==\",00\", null, value)"
+    "description": "Create column 540z at index 12 based on column Preis using expression grel:if(value==\",00\", null, \"EUR \"+value)"
   },
   {
     "op": "core/column-addition",
@@ -197,11 +222,13 @@
       "425a",
       "501",
       "540z",
+	  "564",
+	  "564_",
       "655e"
     ],
     "description": "Reorder columns"
   },
-    {
+  {
     "op": "core/column-addition",
     "engineConfig": {
       "facets": [],
@@ -237,7 +264,7 @@
     "expression": "grel:\"621\"",
     "onError": "set-to-blank",
     "newColumnName": "700b",
-    "columnInsertIndex": 12,
+    "columnInsertIndex": 14,
     "description": "Create column 700b at index 12 based on column seq_nr using expression grel:\"621\""
   }
 ]
