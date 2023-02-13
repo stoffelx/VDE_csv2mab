@@ -266,5 +266,25 @@
     "newColumnName": "700b",
     "columnInsertIndex": 14,
     "description": "Create column 700b at index 12 based on column seq_nr using expression grel:\"621\""
+  },
+  {
+    "op": "core/column-addition",
+    "engineConfig": {
+      "facets": [],
+      "mode": "row-based"
+    },
+    "baseColumnName": "seq_nr",
+    "expression": "grel:value.toString()+\" \"+\"020a\"+\"  L $$a\"+cells['020a'].value.toString()+\"\\r\\n\"+value.toString()+\" \"+\"037b\"+\"  L $$a\"+cells['037b'].value.toString()+\"\\r\\n\"+value.toString()+\" \"+\"331\"+\"   L $$a\"+cells['331'].value.toString()+\"\\r\\n\"+value.toString()+\" \"+\"335\"+\"   L $$a\"+cells['335'].value.toString()+\"\\r\\n\"+value.toString()+\" \"+\"370a\"+\"  L $$a\"+cells['370a'].value.toString()+\"\\r\\n\"+value.toString()+\" \"+\"410\"+\"   L $$a\"+cells['410'].value.toString()+\"\\r\\n\"+value.toString()+\" \"+\"412\"+\"   L $$a\"+cells['412'].value.toString()+\"\\r\\n\"+value.toString()+\" \"+\"425a\"+\"  L $$a\"+cells['425a'].value.toString()+\"\\r\\n\"+value.toString()+\" \"+\"501\"+\"   L $$a\"+cells['501'].value.toString()+\"\\r\\n\"+value.toString()+\" \"+\"540\"+\"   L $$z\"+cells['540z'].value.toString()+\"\\r\\n\"+value.toString()+\" \"+\"564\"+\"   L $$a\"+cells['564'].value.toString()+\"\\r\\n\"+value.toString()+\" \"+\"564\"+\"   L $$a\"+cells['564_'].value.toString()+\"\\r\\n\"+value.toString()+\" \"+\"655e\"+\"  L $$u\"+cells['655e'].value.toString()+\"\\r\\n\"+value.toString()+\" \"+\"700b\"+\"  L $$a\"+cells['700b'].value.toString()",
+    "onError": "set-to-blank",
+    "newColumnName": "ALEPH_SEQUENTIAL",
+    "columnInsertIndex": 0,
+    "description": "Create column ALEPH_SEQUENTIAL at index 1 based on column seq_nr using expression grel:value.toString()+\" \"+\"020a\"+\"  L $$a\"+cells['020a'].value.toString()+\"\\r\\n\"+value.toString()+\" \"+\"037b\"+\"  L $$a\"+cells['037b'].value.toString()+\"\\r\\n\"+value.toString()+\" \"+\"331\"+\"   L $$a\"+cells['331'].value.toString()+\"\\r\\n\"+value.toString()+\" \"+\"335\"+\"   L $$a\"+cells['335'].value.toString()+\"\\r\\n\"+value.toString()+\" \"+\"370a\"+\"  L $$a\"+cells['370a'].value.toString()+\"\\r\\n\"+value.toString()+\" \"+\"410\"+\"   L $$a\"+cells['410'].value.toString()+\"\\r\\n\"+value.toString()+\" \"+\"412\"+\"   L $$a\"+cells['412'].value.toString()+\"\\r\\n\"+value.toString()+\" \"+\"425a\"+\"  L $$a\"+cells['425a'].value.toString()+\"\\r\\n\"+value.toString()+\" \"+\"501\"+\"   L $$a\"+cells['501'].value.toString()+\"\\r\\n\"+value.toString()+\" \"+\"540\"+\"   L $$z\"+cells['540z'].value.toString()+\"\\r\\n\"+value.toString()+\" \"+\"564\"+\"   L $$a\"+cells['564'].value.toString()+\"\\r\\n\"+value.toString()+\" \"+\"564\"+\"   L $$a\"+cells['564_'].value.toString()+\"\\r\\n\"+value.toString()+\" \"+\"655e\"+\"  L $$u\"+cells['655e'].value.toString()+\"\\r\\n\"+value.toString()+\" \"+\"700b\"+\"  L $$a\"+cells['700b'].value.toString()"
+  },
+  {
+    "op": "core/column-reorder",
+    "columnNames": [
+      "ALEPH_SEQUENTIAL"
+    ],
+    "description": "Reorder columns"
   }
 ]

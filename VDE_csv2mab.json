@@ -204,11 +204,11 @@
       "mode": "row-based"
     },
     "baseColumnName": "020a",
-    "expression": "grel:rowIndex+1",
+    "expression": "grel:\"000000000\"[0,9-length(row.index+1)]+(row.index+1)",
     "onError": "set-to-blank",
     "newColumnName": "seq_nr",
     "columnInsertIndex": 2,
-    "description": "Create column seq_nr at index 2 based on column 020a using expression grel:rowIndex+1"
+    "description": "Create column seq_nr at index 2 based on column 020a using expression grel:\"000000000\"[0,9-length(row.index+1)]+(row.index+1)"
   },
   {
     "op": "core/column-reorder",

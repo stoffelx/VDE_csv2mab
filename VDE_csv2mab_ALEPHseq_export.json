@@ -1,0 +1,24 @@
+{
+  "format": "*sv",
+  "separator": "\r\n",
+  "lineSeparator": "\n",
+  "encoding": "UTF-8",
+  "quoteAll": false,
+  "outputColumnHeaders": false,
+  "outputBlankRows": false,
+  "columns": [
+    {
+      "name": "ALEPH_SEQUENTIAL",
+      "reconSettings": {
+        "output": "entity-name",
+        "blankUnmatchedCells": false,
+        "linkToEntityPages": true
+      },
+      "dateSettings": {
+        "format": "iso-8601",
+        "useLocalTimeZone": false,
+        "omitTime": false
+      }
+    }
+  ]
+}
