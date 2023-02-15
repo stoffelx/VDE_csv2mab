@@ -152,11 +152,24 @@
       "mode": "row-based"
     },
     "baseColumnName": "Erscheinungsdatum",
+    "expression": "grel:if(value!=null, value.toDate('dd.MM.yyyy').toString('LLLL yyyy'), null)",
+    "onError": "set-to-blank",
+    "newColumnName": "403",
+    "columnInsertIndex": 8,
+    "description": "Create column 403 at index 8 based on column Erscheinungsdatum using expression grel:if(value!=null, value.toDate('dd.MM.yyyy').toString('LLLL yyyy'), null)"
+  },
+  {
+    "op": "core/column-addition",
+    "engineConfig": {
+      "facets": [],
+      "mode": "row-based"
+    },
+    "baseColumnName": "Ausgabedatum",
     "expression": "grel:value.substring(6)",
     "onError": "set-to-blank",
     "newColumnName": "425a",
-    "columnInsertIndex": 8,
-    "description": "Create column 425a at index 8 based on column Erscheinungsdatum using expression grel:value.substring(6)"
+    "columnInsertIndex": 9,
+    "description": "Create column 425a at index 9 based on column Ausgabedatum using expression grel:value.substring(6)"
   },
   {
     "op": "core/column-addition",
@@ -168,8 +181,8 @@
     "expression": "grel:if(value==\",00\", null, \"EUR \"+value)",
     "onError": "set-to-blank",
     "newColumnName": "540z",
-    "columnInsertIndex": 12,
-    "description": "Create column 540z at index 12 based on column Preis using expression grel:if(value==\",00\", null, \"EUR \"+value)"
+    "columnInsertIndex": 13,
+    "description": "Create column 540z at index 13 based on column Preis using expression grel:if(value==\",00\", null, \"EUR \"+value)"
   },
   {
     "op": "core/column-addition",
@@ -191,11 +204,11 @@
       "mode": "row-based"
     },
     "baseColumnName": "Übergangsfrist",
-    "expression": "grel:if(value!=null, \"Ausgabedatum: \"+cells['Ausgabedatum'].value.toString()+\". - Zurückziehungsdatum: \"+cells['Zurückziehungsdatum'].value.toString()+\". - Übergangsfrist bis: \"+cells['Übergangsfrist'].value.toString(), \"Ausgabedatum: \"+cells['Ausgabedatum'].value.toString())",
+    "expression": "grel:if(value!=null, \"Ausgabedatum: \"+cells['Ausgabedatum'].value.toString()+\". - Zurückziehungsdatum: \"+cells['Zurückziehungsdatum'].value.toString()+\". - Übergangsfrist bis: \"+cells['Übergangsfrist'].value.toString()+\".\", null)",
     "onError": "set-to-blank",
     "newColumnName": "501",
-    "columnInsertIndex": 12,
-    "description": "Create column 501 at index 12 based on column Übergangsfrist using expression grel:if(value!=null, \"Ausgabedatum: \"+cells['Ausgabedatum'].value.toString()+\". - Zurückziehungsdatum: \"+cells['Zurückziehungsdatum'].value.toString()+\". - Übergangsfrist bis: \"+cells['Übergangsfrist'].value.toString(), \"Ausgabedatum: \"+cells['Ausgabedatum'].value.toString())"
+    "columnInsertIndex": 13,
+    "description": "Create column 501 at index 13 based on column Übergangsfrist using expression grel:if(value!=null, \"Ausgabedatum: \"+cells['Ausgabedatum'].value.toString()+\". - Zurückziehungsdatum: \"+cells['Zurückziehungsdatum'].value.toString()+\". - Übergangsfrist bis: \"+cells['Übergangsfrist'].value.toString()+\".\", null)"
   },
   {
     "op": "core/column-addition",
@@ -219,6 +232,7 @@
       "331",
       "335",
       "370a",
+      "403",
       "425a",
       "501",
       "540z",
@@ -238,8 +252,8 @@
     "expression": "grel:\"Berlin\"",
     "onError": "set-to-blank",
     "newColumnName": "410",
-    "columnInsertIndex": 6,
-    "description": "Create column 410 at index 6 based on column seq_nr using expression grel:\"Berlin\""
+    "columnInsertIndex": 7,
+    "description": "Create column 410 at index 7 based on column seq_nr using expression grel:\"Berlin\""
   },
   {
     "op": "core/column-addition",
@@ -251,8 +265,8 @@
     "expression": "grel:\"VDE Verlag\"",
     "onError": "set-to-blank",
     "newColumnName": "412",
-    "columnInsertIndex": 7,
-    "description": "Create column 412 at index 7 based on column seq_nr using expression grel:\"VDE Verlag\""
+    "columnInsertIndex": 8,
+    "description": "Create column 412 at index 8 based on column seq_nr using expression grel:\"VDE Verlag\""
   },
   {
     "op": "core/column-addition",
@@ -264,8 +278,8 @@
     "expression": "grel:\"621\"",
     "onError": "set-to-blank",
     "newColumnName": "700b",
-    "columnInsertIndex": 14,
-    "description": "Create column 700b at index 12 based on column seq_nr using expression grel:\"621\""
+    "columnInsertIndex": 15,
+    "description": "Create column 700b at index 15 based on column seq_nr using expression grel:\"621\""
   },
   {
     "op": "core/column-addition",
@@ -274,11 +288,11 @@
       "mode": "row-based"
     },
     "baseColumnName": "seq_nr",
-    "expression": "grel:value.toString()+\" \"+\"020a\"+\"  L $$a\"+cells['020a'].value.toString()+\"\\r\\n\"+value.toString()+\" \"+\"037b\"+\"  L $$a\"+cells['037b'].value.toString()+\"\\r\\n\"+value.toString()+\" \"+\"331\"+\"   L $$a\"+cells['331'].value.toString()+\"\\r\\n\"+value.toString()+\" \"+\"335\"+\"   L $$a\"+cells['335'].value.toString()+\"\\r\\n\"+value.toString()+\" \"+\"370a\"+\"  L $$a\"+cells['370a'].value.toString()+\"\\r\\n\"+value.toString()+\" \"+\"410\"+\"   L $$a\"+cells['410'].value.toString()+\"\\r\\n\"+value.toString()+\" \"+\"412\"+\"   L $$a\"+cells['412'].value.toString()+\"\\r\\n\"+value.toString()+\" \"+\"425a\"+\"  L $$a\"+cells['425a'].value.toString()+\"\\r\\n\"+value.toString()+\" \"+\"501\"+\"   L $$a\"+cells['501'].value.toString()+\"\\r\\n\"+value.toString()+\" \"+\"540\"+\"   L $$z\"+cells['540z'].value.toString()+\"\\r\\n\"+value.toString()+\" \"+\"564\"+\"   L $$a\"+cells['564'].value.toString()+\"\\r\\n\"+value.toString()+\" \"+\"564\"+\"   L $$a\"+cells['564_'].value.toString()+\"\\r\\n\"+value.toString()+\" \"+\"655e\"+\"  L $$u\"+cells['655e'].value.toString()+\"\\r\\n\"+value.toString()+\" \"+\"700b\"+\"  L $$a\"+cells['700b'].value.toString()",
+    "expression": "grel:value.toString()+\" \"+\"020a\"+\"  L $$a\"+cells['020a'].value.toString()+\"\\r\\n\"+value.toString()+\" \"+\"037b\"+\"  L $$a\"+cells['037b'].value.toString()+\"\\r\\n\"+value.toString()+\" \"+\"331\"+\"   L $$a\"+cells['331'].value.toString()+\"\\r\\n\"+value.toString()+\" \"+\"335\"+\"   L $$a\"+cells['335'].value.toString()+\"\\r\\n\"+value.toString()+\" \"+\"370a\"+\"  L $$a\"+cells['370a'].value.toString()+\"\\r\\n\"+value.toString()+\" \"+\"403\"+\"   L $$a\"+cells['403'].value.toString()+\"\\r\\n\"+value.toString()+\" \"+\"410\"+\"   L $$a\"+cells['410'].value.toString()+\"\\r\\n\"+value.toString()+\" \"+\"412\"+\"   L $$a\"+cells['412'].value.toString()+\"\\r\\n\"+value.toString()+\" \"+\"425a\"+\"  L $$a\"+cells['425a'].value.toString()+\"\\r\\n\"+value.toString()+\" \"+\"501\"+\"   L $$a\"+cells['501'].value.toString()+\"\\r\\n\"+value.toString()+\" \"+\"540\"+\"   L $$z\"+cells['540z'].value.toString()+\"\\r\\n\"+value.toString()+\" \"+\"564\"+\"   L $$a\"+cells['564'].value.toString()+\"\\r\\n\"+value.toString()+\" \"+\"564\"+\"   L $$a\"+cells['564_'].value.toString()+\"\\r\\n\"+value.toString()+\" \"+\"655e\"+\"  L $$u\"+cells['655e'].value.toString()+\"\\r\\n\"+value.toString()+\" \"+\"700b\"+\"  L $$a\"+cells['700b'].value.toString()",
     "onError": "set-to-blank",
     "newColumnName": "ALEPH_SEQUENTIAL",
     "columnInsertIndex": 0,
-    "description": "Create column ALEPH_SEQUENTIAL at index 1 based on column seq_nr using expression grel:value.toString()+\" \"+\"020a\"+\"  L $$a\"+cells['020a'].value.toString()+\"\\r\\n\"+value.toString()+\" \"+\"037b\"+\"  L $$a\"+cells['037b'].value.toString()+\"\\r\\n\"+value.toString()+\" \"+\"331\"+\"   L $$a\"+cells['331'].value.toString()+\"\\r\\n\"+value.toString()+\" \"+\"335\"+\"   L $$a\"+cells['335'].value.toString()+\"\\r\\n\"+value.toString()+\" \"+\"370a\"+\"  L $$a\"+cells['370a'].value.toString()+\"\\r\\n\"+value.toString()+\" \"+\"410\"+\"   L $$a\"+cells['410'].value.toString()+\"\\r\\n\"+value.toString()+\" \"+\"412\"+\"   L $$a\"+cells['412'].value.toString()+\"\\r\\n\"+value.toString()+\" \"+\"425a\"+\"  L $$a\"+cells['425a'].value.toString()+\"\\r\\n\"+value.toString()+\" \"+\"501\"+\"   L $$a\"+cells['501'].value.toString()+\"\\r\\n\"+value.toString()+\" \"+\"540\"+\"   L $$z\"+cells['540z'].value.toString()+\"\\r\\n\"+value.toString()+\" \"+\"564\"+\"   L $$a\"+cells['564'].value.toString()+\"\\r\\n\"+value.toString()+\" \"+\"564\"+\"   L $$a\"+cells['564_'].value.toString()+\"\\r\\n\"+value.toString()+\" \"+\"655e\"+\"  L $$u\"+cells['655e'].value.toString()+\"\\r\\n\"+value.toString()+\" \"+\"700b\"+\"  L $$a\"+cells['700b'].value.toString()"
+    "description": "Create column ALEPH_SEQUENTIAL at index 1 based on column seq_nr using expression grel:value.toString()+\" \"+\"020a\"+\"  L $$a\"+cells['020a'].value.toString()+\"\\r\\n\"+value.toString()+\" \"+\"037b\"+\"  L $$a\"+cells['037b'].value.toString()+\"\\r\\n\"+value.toString()+\" \"+\"331\"+\"   L $$a\"+cells['331'].value.toString()+\"\\r\\n\"+value.toString()+\" \"+\"335\"+\"   L $$a\"+cells['335'].value.toString()+\"\\r\\n\"+value.toString()+\" \"+\"370a\"+\"  L $$a\"+cells['370a'].value.toString()+\"\\r\\n\"+value.toString()+\" \"+\"403\"+\"   L $$a\"+cells['403'].value.toString()+\"\\r\\n\"+value.toString()+\" \"+\"410\"+\"   L $$a\"+cells['410'].value.toString()+\"\\r\\n\"+value.toString()+\" \"+\"412\"+\"   L $$a\"+cells['412'].value.toString()+\"\\r\\n\"+value.toString()+\" \"+\"425a\"+\"  L $$a\"+cells['425a'].value.toString()+\"\\r\\n\"+value.toString()+\" \"+\"501\"+\"   L $$a\"+cells['501'].value.toString()+\"\\r\\n\"+value.toString()+\" \"+\"540\"+\"   L $$z\"+cells['540z'].value.toString()+\"\\r\\n\"+value.toString()+\" \"+\"564\"+\"   L $$a\"+cells['564'].value.toString()+\"\\r\\n\"+value.toString()+\" \"+\"564\"+\"   L $$a\"+cells['564_'].value.toString()+\"\\r\\n\"+value.toString()+\" \"+\"655e\"+\"  L $$u\"+cells['655e'].value.toString()+\"\\r\\n\"+value.toString()+\" \"+\"700b\"+\"  L $$a\"+cells['700b'].value.toString()"
   },
   {
     "op": "core/column-reorder",
